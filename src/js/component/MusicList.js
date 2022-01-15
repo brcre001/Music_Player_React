@@ -15,7 +15,6 @@ export const MusicList = () => {
 		try {
 			let response = await fetch(`${songURL}/songs`);
 			let data = await response.json();
-			console.log("This is the data: ", data);
 			setSongsList(data);
 			return data;
 		} catch {
@@ -27,25 +26,27 @@ export const MusicList = () => {
 
 	return (
 		<>
-			<h2>Current Song: {songName}</h2>
+			<h2 className="text-dark">Current Song: {songName}</h2>
+			<div className="p-2">
+				<audio src={`${songURL}/${currentSong}`} controls autoPlay />
+			</div>
 			<ol className="list-group w-50 mx-auto p-2">
 				{songsList.map((item, index) => {
 					return (
 						<li
-							className="list-group-item list-group-item-action list-group-item-primary"
+							className="list-group-item list-group-item-action list-group-item-warning"
 							onClick={() => {
 								setCurrentSong(item.url);
 								setSongName(item.name);
 							}}
 							key={index}>
-							{item.name}
+							<div className="justify-content-start">
+								{index + 1}. {item.name}
+							</div>
 						</li>
 					);
 				})}
 			</ol>
-			<div className="p-2">
-				<audio src={`${songURL}/${currentSong}`} controls autoPlay />
-			</div>
 		</>
 	);
 };

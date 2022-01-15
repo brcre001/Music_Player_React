@@ -1,13 +1,22 @@
 import React from "react";
 import { MusicList } from "./MusicList";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
-//create your first component
 const Home = () => {
 	return (
-		<div className="text-center mt-5">
-			<h1 className="text-primary">Music Player</h1>
-			<MusicList />
-		</div>
+		<>
+			<Navbar bg="dark" variant="dark">
+				<Container>
+					<Navbar.Brand href="#home">
+						<i className="fab fa-spotify"></i> Spotify
+					</Navbar.Brand>
+				</Container>
+			</Navbar>
+			<div className="text-center pt-5 bg-secondary">
+				<MusicList />
+			</div>
+		</>
 	);
 };
 
